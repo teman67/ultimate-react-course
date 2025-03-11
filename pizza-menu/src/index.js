@@ -71,14 +71,14 @@ function Header() {
 
 function Pizza(props) {
   return (
-    <div className="pizza">
+    <li className="pizza">
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
       <div>
         <h2>{props.pizzaObj.name}</h2>
         <p>{props.pizzaObj.ingredients}</p>
         <span> {props.pizzaObj.price} </span>
       </div>
-    </div>
+    </li>
   );
 }
 
@@ -87,7 +87,7 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
 
-      <div>
+      <ul className="pizzas">
         {pizzaData.map((pizza) => (
           //   <Pizza
           //     name={pizza.name}
@@ -97,7 +97,7 @@ function Menu() {
           //   />
           <Pizza pizzaObj={pizza} key={pizza.name} />
         ))}
-      </div>
+      </ul>
 
       {/* <Pizza
         name="Pizza Margarita"
@@ -128,7 +128,14 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()}. &copy; 2021
+      {isOpen && (
+        <div className="order">
+          <p>We are open! until {closeHours}</p>
+          <button onClick={() => alert("Thank you for your order!")}>
+            Order Now
+          </button>
+        </div>
+      )}
     </footer>
   );
 }
