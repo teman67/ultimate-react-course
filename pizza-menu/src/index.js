@@ -83,36 +83,29 @@ function Pizza(props) {
 }
 
 function Menu() {
+  //   const pizzas = [];
+  const pizzas = pizzaData;
+  const numPizzas = pizzas.length;
+
   return (
     <main className="menu">
       <h2>Our Menu</h2>
 
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => (
-          //   <Pizza
-          //     name={pizza.name}
-          //     ingeredients={pizza.ingredients}
-          //     photoName={pizza.photoName}
-          //     price={pizza.price}
-          //   />
-          <Pizza pizzaObj={pizza} key={pizza.name} />
-        ))}
-      </ul>
-
-      {/* <Pizza
-        name="Pizza Margarita"
-        ingeredients="Tomato and mozarella"
-        photoName="pizzas/margherita.jpg"
-        // price="10"
-        price={10}
-      />
-      <Pizza
-        name="Pizza Spinach"
-        ingeredients="Tomato, mozarella, spinach, and ricotta cheese"
-        photoName="pizzas/spinaci.jpg"
-        // price="13"
-        price={13}
-      /> */}
+      {numPizzas > 0 ? (
+        <ul className="pizzas">
+          {pizzaData.map((pizza) => (
+            //   <Pizza
+            //     name={pizza.name}
+            //     ingeredients={pizza.ingredients}
+            //     photoName={pizza.photoName}
+            //     price={pizza.price}
+            //   />
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      ) : (
+        <p>Sorry, no pizzas available</p>
+      )}
     </main>
   );
 }
@@ -128,13 +121,15 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {isOpen && (
+      {isOpen ? (
         <div className="order">
           <p>We are open! until {closeHours}</p>
           <button onClick={() => alert("Thank you for your order!")}>
             Order Now
           </button>
         </div>
+      ) : (
+        <p>Wellcome later</p>
       )}
     </footer>
   );
