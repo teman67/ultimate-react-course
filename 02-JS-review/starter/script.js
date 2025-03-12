@@ -142,3 +142,130 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+
+const books = getBook(2);
+books;
+const book = getBook(3);
+const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+  book;
+// const title = books.title;
+// const author = books.author;
+console.log(author, title, genres);
+// title;
+// author;
+
+// console.log(title);
+// console.log(author);
+
+// const { title, author } = getBook(2);
+// title;
+// author;
+
+// console.log(author, title);
+
+const [primary, secondary, ...other] = genres;
+console.log(primary, secondary, other);
+
+const newGenres = [
+  ...genres,
+  "fantasy",
+  "high-fantasy",
+  "adventure",
+  "fiction",
+  "novels",
+  "literature",
+];
+
+console.log(newGenres);
+
+const summary = `${title}, ${pages} pages is a book`;
+summary;
+
+const pagesRange = pages > 1000 ? "over thousend" : "below thousend";
+pagesRange;
+console.log(`the book has ${pagesRange} pages`);
+
+// function getYear(str) {
+//   return str.split("-")[0];
+// }
+
+// console.log(getYear(publicationDate));
+
+const getYear = (str) => str.split("-")[0];
+console.log(getYear(publicationDate));
+
+console.log(true && "Some string");
+console.log(false && "Some string");
+
+console.log(true || "Some string");
+console.log(false || "Some string");
+
+console.log(!true);
+console.log(!false);
+
+const book2 = getBook(2); // The Cyberiad
+
+const count = book2.reviews.librarything.reviewsCount || "No reviews";
+console.log(count);
+
+const count2 = book2.reviews.librarything.reviewsCount ?? "No reviews";
+console.log(count2);
+
+function getTotalReviews(book) {
+  const goodreads = book.reviews?.goodreads?.reviewsCount ?? 0;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+  return goodreads + librarything;
+}
+
+console.log(getTotalReviews(book2));
+
+const x = [1, 2, 3, 4, 5].map((num) => num * 2);
+console.log(x);
+
+const titles = data.map((book) => book.title);
+console.log(titles);
+
+// const essentialInfo = books.map((book) => ({
+//   tiitle: book.title,
+//   author: book.author,
+//   reviewsCount: getTotalReviews(book),
+// }));
+
+// console.log(essentialInfo);
+
+const longBooks = data.filter((book) => book.pages > 500);
+console.log(longBooks);
+longBooks;
+
+// const longBooks2 = books
+//   .filter((book) => book.pages > 500)
+//   .filter((book) => book.hasMovieAdaptation);
+
+const pagesAllBooks = data.reduce((acc, book) => acc + book.pages, 0);
+console.log(pagesAllBooks);
+
+const y = [1, 6, 3, 2, 5];
+const stored = y.slice().sort((a, b) => a - b);
+console.log(stored);
+console.log(y);
+
+const sortedByPages = data.slice().sort((a, b) => a.pages - b.pages);
+console.log(sortedByPages);
+
+fetch("https://jsonplaceholder.typicode.com/todo");
+console.log(fetch("https://jsonplaceholder.typicode.com/todo"));
+
+// fetch("https://jsonplaceholder.typicode.com/todos")
+//   .then((res) => res.json())
+//   .then((data) => console.log(data));
+
+// console.log("jonas");
+
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
+
+getTodos();
